@@ -1,4 +1,6 @@
 datasource db {
+    // cockroachdb to prisma connector :"cockroachdb" 
+    // prisma to Next-Auth adaptor :"postgresql" 
     provider = "postgresql"
     url      = env("DATABASE_URL")
 }

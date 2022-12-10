@@ -1,19 +1,83 @@
 .container {
   margin: 4em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
 }
-.container button {
-  background-color: rgb(246, 207, 213);
-  border: 1px solid lightgray;
-  border-radius: 64px;
-  padding: 1em 2em;
-}
-.container button:hover {
-  transform: scale(1.1);
+.container h3 {
+  color: rgb(61, 61, 61);
 }
 
+/* Button is adapted from the fantastic https://www.joshwcomeau.com/animation/3d-button/ tutorial */
+.pushable {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline-offset: 4px;
+  position: relative;
+  transition: filter 250ms;
+}
+.shadow {
+  background: hsl(0deg 0% 0% / 0.25);
+  border-radius: 60px;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translateY(2px);
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+  width: 100%;
+  will-change: transform;
+}
+.edge {
+  background: linear-gradient(
+    to left,
+    #44623f 0%,
+    #67955d 8%,
+    #67955d 92%,
+    #44623f 100%
+  );
+  border-radius: 60px;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.front {
+  align-items: center;
+  background: #8bc27f;
+  color: white;
+  display: grid;
+  font-weight: 600;
+  justify-content: center;
+  position: relative;
+  transition: transform 600ms cubic-bezier(0.3, 0.7, 0.4, 1);
+  will-change: transform;
+
+  border-radius: 60px;
+  font-size: 1rem;
+  height: 40px;
+  transform: translateY(-5px);
+  width: 100px;
+}
+.pushable:active .front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+.pushable:active .shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+.pushable:focus:not(:focus-visible) {
+  outline: none;
+}
+/*  */
+
 @media (prefers-color-scheme: dark) {
-  .container button {
-    color: rgb(30, 30, 30);
-    border: 1px solid rgb(57, 57, 57);
+  .container h3 {
+    color: rgb(232, 232, 232);
   }
 }
