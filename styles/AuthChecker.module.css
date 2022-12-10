@@ -1,0 +1,19 @@
+.container {
+  margin: 4em;
+}
+.container button {
+  background-color: rgb(246, 207, 213);
+  border: 1px solid lightgray;
+  border-radius: 64px;
+  padding: 1em 2em;
+}
+.container button:hover {
+  transform: scale(1.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .container button {
+    color: rgb(30, 30, 30);
+    border: 1px solid rgb(57, 57, 57);
+  }
+}
