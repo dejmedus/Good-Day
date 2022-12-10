@@ -42,6 +42,18 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    trackers      Tracker[]
+}
+
+model Tracker {
+    userId String
+    id     String  @id @default(cuid())
+    habit  Boolean
+    color  String
+    name   String
+    goal   Int
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {

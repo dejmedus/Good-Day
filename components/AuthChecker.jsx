@@ -9,7 +9,11 @@ export default function AuthChecker() {
             {loading
                 ? <h3>loading...</h3>
                 : session
-                    ? <button onClick={() => signOut()}>Sign out</button>
+
+                    ? <>
+                        <h3>Heya {session.user.name} 👋</h3>
+                        <button onClick={() => signOut()}>Sign out</button>
+                    </>
                     : <>
                         <h3>Sign in to create trackers!</h3>
                         <button onClick={() => signIn()}>Sign in</button>
