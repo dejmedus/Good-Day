@@ -10,9 +10,9 @@
   background: rgb(247, 247, 247);
   background: linear-gradient(
     90deg,
-    rgba(237, 237, 237, 1) 0%,
+    rgba(242, 242, 242, 1) 0%,
     rgba(255, 255, 255, 1) 50%,
-    rgba(237, 237, 237, 1) 100%
+    rgba(242, 242, 242, 1) 100%
   );
 }
 
@@ -24,17 +24,28 @@
   flex: 1;
   align-items: center;
   background-color: #80b8fa;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .footer a {
-  padding: 0 2em;
+  padding: 0 2em 0 1em;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  flex-grow: 1;
 }
 .footer a:hover {
   opacity: 0.5;
+}
+.footer button {
+  padding: 0.4em;
+  border-radius: 24px;
+  color: #5a81ad;
+  border: 2px dotted #5a81ad;
+  font-weight: bolder;
+  background-color: #80b8fa;
+}
+.footer button:hover {
+  background-color: #8dc2fe;
 }
 
 /* https://www.shapedivider.app */

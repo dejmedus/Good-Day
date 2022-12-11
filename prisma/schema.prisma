@@ -48,12 +48,13 @@ model User {
 }
 
 model Tracker {
-    userId String
-    id     String  @id @default(cuid())
-    habit  Boolean
-    color  String
-    name   String
-    goal   Int
+    userId  String
+    id      String  @id @default(cuid())
+    habit   Boolean
+    color   String
+    name    String
+    goal    Int
+    current Int
 
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

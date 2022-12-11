@@ -1,10 +1,13 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import AuthChecker from '../components//AuthChecker'
+import Main from '../components/Main'
 import Image from 'next/image'
 import github from '../assets/images/github.png'
+import { useSession, signOut } from "next-auth/react"
+
 
 export default function Home() {
+  const { data: session, status } = useSession()
 
   return (
     <div>
@@ -16,7 +19,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1>Habit tracker for Notion!</h1>
-        <AuthChecker />
+        <Main session={session} status={status} />
       </main>
 
       <div className={styles.customShapeDivider}>
@@ -25,6 +28,9 @@ export default function Home() {
         </svg>
       </div>
       <footer className={styles.footer}>
+        {status == 'authenticated'
+          ? <button onClick={() => signOut()}>Signout</button>
+          : null}
         <a
           href="https://github.com/dejmedus"
           target="_blank"

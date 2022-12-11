@@ -1,13 +1,5 @@
 .container {
-  margin: 4em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2em;
-}
-.container h3 {
-  color: rgb(61, 61, 61);
+  margin: 2em;
 }
 
 /* Button is adapted from the fantastic https://www.joshwcomeau.com/animation/3d-button/ tutorial */
@@ -18,6 +10,10 @@
   outline-offset: 4px;
   position: relative;
   transition: filter 250ms;
+}
+.pushable:disabled {
+  filter: grayscale(1);
+  opacity: 0.4;
 }
 .shadow {
   background: hsl(0deg 0% 0% / 0.25);
@@ -75,9 +71,3 @@
   outline: none;
 }
 /*  */
-
-@media (prefers-color-scheme: dark) {
-  .container h3 {
-    color: rgb(232, 232, 232);
-  }
-}
