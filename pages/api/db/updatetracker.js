@@ -12,7 +12,6 @@ export default async function updatetracker(req, res) {
     }
     const { id, current } = req.body
 
-    // can we go straight to the tracker???
     const updatedTracker = await prisma.tracker.update({
         where: { id: id },
         data: {

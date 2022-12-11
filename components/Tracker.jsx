@@ -13,7 +13,7 @@ const Tracker = ({ tracker }) => {
             setHabitTracker(cur => cur + 1)
         }
 
-        fetch('/api/db/gettrackers', {
+        fetch('/api/db/updatetracker', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
