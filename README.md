@@ -1,7 +1,7 @@
 ## Good Day 
-### Custom habit trackers to embed Notion
+### Create custom habit trackers
 
-Good Day was built in a weekend for [Major League Hacking's](https://mlh.io) EduHacks.
+A tool to create habit trackers that can be used as is, or linked into notes, to remind its users to stay determined and make progress their goals! Good Day was built in a weekend for [Major League Hacking's](https://mlh.io) EduHacks Hackathon.
 
 ### Built with
 
