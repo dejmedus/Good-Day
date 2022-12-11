@@ -3,3 +3,12 @@
   flex-direction: column;
   gap: 1em;
 }
+
+.trackerContainer {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+.trackerContainer link:hover {
+  transform: scale(2);
+}

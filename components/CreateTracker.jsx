@@ -40,7 +40,10 @@ export default function CreateTracker({ trackers, setTrackers, session }) {
             goal: parseInt(formData.goal),
         }
 
-        setFormData({})
+        setFormData({
+            habit: 'Habit Tracker',
+            color: 'red'
+        })
         setTrackerType('Habit Tracker')
         setRangeValue(0)
 

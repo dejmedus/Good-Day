@@ -1,10 +1,10 @@
 import Tracker from "./Tracker"
 import { useState, useEffect } from 'react'
 import styles from '../styles/YourTrackers.module.css'
+import Link from 'next/link'
 
 const YourTrackers = ({ trackers, setTrackers }) => {
 
-    // const [data, setData] = useState(null)
     const [isLoading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -22,7 +22,10 @@ const YourTrackers = ({ trackers, setTrackers }) => {
                 ? <h1>loading...</h1>
                 : <>
                     {trackers.map(tracker => {
-                        return <Tracker key={tracker.id} tracker={tracker} />
+                        return <div key={tracker.id} className={styles.trackerContainer}>
+                            <Tracker tracker={tracker} />
+                            <Link href={`tracker/${tracker.id}`}>🔗</Link>
+                        </div>
                     })}
                 </>}
         </div>
