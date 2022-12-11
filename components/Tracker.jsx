@@ -36,7 +36,7 @@ const Tracker = ({ tracker }) => {
 
 
     return (
-        tracker.habit == true
+        tracker.habit == 'Habit Tracker'
             ? <div id={tracker.id} name={tracker.id} className={`${styles.container} ${styles.color}`}>
                 <h3>{tracker.name}</h3>
                 <button onClick={subtractHabitTracker}>-</button>

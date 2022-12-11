@@ -15,3 +15,88 @@
   flex: 1;
   font-size: 1.5em;
 }
+
+.container input[type="text"] {
+  border: none;
+  border-bottom: 4px solid black;
+  font-size: 1.2em;
+  padding-left: 0.1em;
+}
+.container input[type="text"]:active,
+.container input[type="text"]:focus {
+  outline: none;
+  background: rgb(216, 194, 255);
+  background: linear-gradient(
+    0deg,
+    rgb(216, 194, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+}
+
+/* https://stackoverflow.com/questions/4253920/how-do-i-change-the-color-of-radio-buttons */
+.container input[type="radio"]:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #d1d3d1;
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+.container input[type="radio"]:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: rgb(255, 198, 134);
+  content: "";
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid white;
+}
+/*  */
+
+/* https://www.w3schools.com/howto/howto_js_rangeslider.asp */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 24px;
+  background: rgb(255, 213, 220);
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: rgb(254, 141, 182);
+  cursor: pointer;
+  border-radius: 64px;
+}
+
+.slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: rgb(254, 141, 182);
+  cursor: pointer;
+  border-radius: 64px;
+}
+/*  */
+
+@media (prefers-color-scheme: dark) {
+  .container input[type="text"] {
+    background-color: rgb(57, 57, 57, 0.1);
+    border-bottom: 4px solid white;
+  }
+}

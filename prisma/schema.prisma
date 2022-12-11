@@ -49,8 +49,8 @@ model User {
 
 model Tracker {
     userId  String
-    id      String  @id @default(cuid())
-    habit   Boolean
+    id      String @id @default(cuid())
+    habit   String
     color   String
     name    String
     goal    Int

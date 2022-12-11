@@ -1,12 +1,15 @@
 import styles from '../styles/CreateTracker.module.css'
 import { useState } from 'react'
-import Button from "./Button"
+import Button from './Button'
 
-export default function CreateTracker({ session, status }) {
+export default function CreateTracker({ session }) {
 
-
-    const [formData, setFormData] = useState({});
+    const [formData, setFormData] = useState({
+        habit: 'Habit Tracker',
+        color: 'red'
+    });
     const [trackerType, setTrackerType] = useState('Habit Tracker');
+    const [rangeValue, setRangeValue] = useState(0)
 
     const onChange = (e) => {
         const { name, value } = e.target;
@@ -17,20 +20,31 @@ export default function CreateTracker({ session, status }) {
         });
 
         // change toggle label
-        setTrackerType(habitBool == false ? 'Habit Tracker' : 'Time Tracker');
+        // setTrackerType(habit == false ? 'Habit Tracker' : 'Time Tracker');
+        if (name == 'habit') {
+            // setTrackerType(cur => cur == 'Habit Tracker' ? 'Time Tracker' : 'Habit Tracker');
+            setTrackerType(value);
+            setRangeValue(0)
+        }
+        if (name == 'goal') {
+            setRangeValue(value)
+        }
     };
+
 
     function createTracker() {
         const email = session.user.email;
-        const habitBool = formData.habitBool;
+        const habit = formData.habit;
         const color = formData.color;
         const trackerName = formData.trackerName;
         const goal = formData.goal;
 
-        console.log(email, habitBool, color, trackerName, goal);
-
+        console.log(email, habit, color, trackerName, goal);
+        // setFormData({})
+        // setTrackerType('Habit Tracker')
+        // setRangeValue(0)
         // add tracker to database
-        // dbTracker(email, habitBool, color, trackerName, goal)
+        // dbTracker(email, habit, color, trackerName, goal)
         //     .then(async () => {
         //         await prisma.$disconnect()
         //     })
@@ -42,27 +56,29 @@ export default function CreateTracker({ session, status }) {
     }
 
     return (
-        <form onSubmit={createTracker} className={styles.container}>
+        <form className={styles.container}>
             <div className={styles.labelGroup}>
                 <label htmlFor='trackerName'>
                     Goal
                 </label>
-                <input type='text' name='trackerName' id='trackerName' onChange={onChange} placeholder='yoga' />
+                <input type='text' name='trackerName' id='trackerName' onChange={onChange} />
             </div>
             <div className={styles.labelGroup}>
-                <label class="switch" htmlFor='habitBool'>{trackerType}</label>
-                {trackerType}
-                <input type="checkbox" name='habitBool' id='habitBool' onChange={onChange} />
-                <span class="slider"></span>
+                <label className={styles.switch} htmlFor='habit'>Habit Tracker</label>
+                <input type="radio" name='habit' id='habit' value='Habit Tracker' onChange={onChange} checked={trackerType == 'Habit Tracker'} />
+            </div>
+            <div className={styles.labelGroup}>
+                <label className={styles.switch} htmlFor='habit'>Time Tracker</label>
+                <input type="radio" name='habit' id='habit' value='Time Tracker' onChange={onChange} />
             </div>
             {trackerType == 'Habit Tracker'
                 ? <div className={styles.labelGroup}>
-                    <label htmlFor='goal'>Days per week</label>
-                    <input type="range" min="1" max="7" value="1" class="slider" id="goal" name='goal' onChange={onChange} />
+                    <label htmlFor='goal'>Days per week [{rangeValue}/7]</label>
+                    <input value={rangeValue} type="range" min="0" max="7" className={styles.slider} id="goal" name='goal' onChange={onChange} />
                 </div>
                 : <div className={styles.labelGroup}>
-                    <label htmlFor='goal'>Hours per day</label>
-                    <input type="range" min="1" max="18" step='0.5' value="1" class="slider" id="goal" name='goal' onChange={onChange} />
+                    <label htmlFor='goal'>Hours per day [{rangeValue}h]</label>
+                    <input value={rangeValue} type="range" min="0" max="24" step='0.5' className={styles.slider} id="goal" name='goal' onChange={onChange} />
                 </div>
             }
             <div className={styles.labelGroup}>
@@ -77,12 +93,12 @@ export default function CreateTracker({ session, status }) {
                     <option value="purple">purple</option>
                 </select>
             </div>
-            <Button type="submit" disabled={!formData.habitBool || !formData.color || !formData.trackerName || !formData.goal} name='Create' />
+            <Button onClick={createTracker} disabled={!formData.habit || !formData.color || !formData.trackerName || !formData.goal || formData.goal == 0} name='Create' />
         </form>
     )
 }
 
-async function dbTracker(email, habitBool, color, trackerName, goal) {
+async function dbTracker(email, habit, color, trackerName, goal) {
 
     // use unique email to find userID
     const user = await prisma.user.findUnique({
@@ -101,7 +117,7 @@ async function dbTracker(email, habitBool, color, trackerName, goal) {
                 create: {
                     // id is generated
                     userId: userId,
-                    habit: habitBool,
+                    habit: habit,
                     color: color,
                     name: trackerName,
                     goal: goal,

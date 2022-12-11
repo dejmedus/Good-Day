@@ -39,10 +39,14 @@
 .footer button {
   padding: 0.4em;
   border-radius: 24px;
-  color: #5a81ad;
-  border: 2px dotted #5a81ad;
   font-weight: bolder;
+
+  color: #4774a7;
+  border: 2px dotted #5b8ec9;
   background-color: #80b8fa;
+
+  /* color: #ffd79c;
+  border: 2px dotted #fdc775;*/
 }
 .footer button:hover {
   background-color: #8dc2fe;
@@ -57,6 +61,7 @@
   overflow: hidden;
   line-height: 0;
   transform: rotate(180deg);
+  z-index: 0;
 }
 
 .customShapeDivider svg {
@@ -87,7 +92,7 @@
     background: linear-gradient(
       90deg,
       rgba(38, 38, 38, 1) 0%,
-      rgba(0, 0, 0, 1) 50%,
+      rgb(57, 57, 57) 50%,
       rgba(38, 38, 38, 1) 100%
     );
   }
