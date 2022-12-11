@@ -1,24 +1,24 @@
 import Tracker from "./Tracker"
 
 const YourTrackers = ({ session, status }) => {
+    // console.log(trackers)
 
-    // const trackers = getTrackers(session.user.email)
-    const trackers = false;
-
-    // why doesnt this one like brackets?
     return (
         status == 'loading'
             ? <h3>loading...</h3>
-            : trackers
-                ? <p>map trackers here</p>
-                : <p>Create a tracker!</p>
+            : <h1>trackers here</h1>
+        // : trackers
+        //     ? <p>map trackers here</p>
+        //     : <p>Create a tracker!</p>
     )
 }
 
 export default YourTrackers
 
-// async function getTrackers(email) {
+// export async function getStaticProps() {
 
+//     const email = session.user.email;
+//     console.log(email)
 //     // use unique email to find userID
 //     const user = await prisma.user.findUnique({
 //         where: {
@@ -26,7 +26,12 @@ export default YourTrackers
 //         },
 //     })
 //     console.log(user.trackers)
-//     return user.trackers;
+//     const trackers = user.trackers
+
+//     return {
+//         props: { trackers }
+
+//     }
 // }
 
 // : trackers

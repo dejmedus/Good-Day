@@ -4,7 +4,7 @@ import GoogleProvider from "next-auth/providers/google";
 import prisma from '../../../lib/prisma'
 
 
-export default NextAuth({
+export const authOptions = {
     adapter: PrismaAdapter(prisma),
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
@@ -16,21 +16,8 @@ export default NextAuth({
     theme: {
         colorScheme: "auto", // "auto" | "dark" | "light"
         brandColor: "0x8bc27f", // Hex color code
-        // buttonText: "" // Hex color code
+        buttonText: "0x8bc27f" // Hex color code
     },
-    callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
-            console.log(user, account, profile, email, credentials);
-            return true
-        },
-        // async redirect({ url, baseUrl }) {
-        //     return baseUrl
-        // },
-        // async session({ session, user, token }) {
-        //     return session
-        // },
-        // async jwt({ token, user, account, profile, isNewUser }) {
-        //     return token
-        // }
-    }
-});
+}
+
+export default NextAuth(authOptions)

@@ -14,9 +14,7 @@ const Tracker = ({ tracker }) => {
         console.log(name)
 
         setHabitTracker(cur => cur + 1)
-        console.log('TRACKER');
-        console.log(habitTracker)
-        updateTracker(name, habitTracker)
+
     }
     const subtractHabitTracker = (e) => {
         // name is the tracker id
@@ -27,9 +25,14 @@ const Tracker = ({ tracker }) => {
         if (habitTracker > 0) {
             setHabitTracker(cur => cur - 1)
         }
-        console.log('TRACKER');
-        console.log(habitTracker)
-        updateTracker(name, habitTracker)
+
+        fetch('/api/db/updatetracker', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: tracker.id, current: habitTracker }),
+        })
     }
 
     // Time tracker logic
@@ -55,16 +58,3 @@ const Tracker = ({ tracker }) => {
 }
 
 export default Tracker
-
-async function updateTracker(id, current) {
-
-    // can we go straight to the tracker???
-    const updatedTracker = await prisma.tracker.update({
-        where: { id: id },
-        data: {
-            current: current
-        }
-    })
-    console.log('TRACKER');
-    console.log(updatedTracker);
-}

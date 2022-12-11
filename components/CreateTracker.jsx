@@ -19,10 +19,7 @@ export default function CreateTracker({ session }) {
             [name]: value,
         });
 
-        // change toggle label
-        // setTrackerType(habit == false ? 'Habit Tracker' : 'Time Tracker');
         if (name == 'habit') {
-            // setTrackerType(cur => cur == 'Habit Tracker' ? 'Time Tracker' : 'Habit Tracker');
             setTrackerType(value);
             setRangeValue(0)
         }
@@ -32,31 +29,46 @@ export default function CreateTracker({ session }) {
     };
 
 
-    function createTracker() {
-        const email = session.user.email;
-        const habit = formData.habit;
-        const color = formData.color;
-        const trackerName = formData.trackerName;
-        const goal = formData.goal;
+    async function createTracker(e) {
+        e.preventDefault()
 
-        console.log(email, habit, color, trackerName, goal);
-        // setFormData({})
-        // setTrackerType('Habit Tracker')
-        // setRangeValue(0)
-        // add tracker to database
-        // dbTracker(email, habit, color, trackerName, goal)
-        //     .then(async () => {
-        //         await prisma.$disconnect()
-        //     })
-        //     .catch(async (e) => {
-        //         console.error(e)
-        //         await prisma.$disconnect()
-        //         process.exit(1)
-        //     })
+        const data = {
+            email: session.user.email,
+            habit: formData.habit,
+            color: formData.color,
+            trackerName: formData.trackerName,
+            goal: parseInt(formData.goal),
+        }
+
+        console.log(data);
+        setFormData({})
+        setTrackerType('Habit Tracker')
+        setRangeValue(0)
+
+        const endpoint = '/api/db/createtracker'
+
+        // Form the request for sending data to the server.
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        }
+
+        // Send the form data to api/db/createtracker.
+        try {
+            const response = await fetch(endpoint, options)
+            const result = await response.json()
+            console.log(result);
+        }
+        catch {
+            console.log('ERROR: createTracker post')
+        }
     }
 
     return (
-        <form className={styles.container}>
+        <form onSubmit={createTracker} className={styles.container}>
             <div className={styles.labelGroup}>
                 <label htmlFor='trackerName'>
                     Goal
@@ -93,39 +105,7 @@ export default function CreateTracker({ session }) {
                     <option value="purple">purple</option>
                 </select>
             </div>
-            <Button onClick={createTracker} disabled={!formData.habit || !formData.color || !formData.trackerName || !formData.goal || formData.goal == 0} name='Create' />
+            <Button type='submit' disabled={!formData.habit || !formData.color || !formData.trackerName || !formData.goal || formData.goal == 0} name='Create' />
         </form>
     )
-}
-
-async function dbTracker(email, habit, color, trackerName, goal) {
-
-    // use unique email to find userID
-    const user = await prisma.user.findUnique({
-        where: {
-            email: email,
-        },
-    })
-    const userId = user.userId;
-
-    console.log(user, user.userId);
-
-    const newTracker = await prisma.user.update({
-        where: { userId: userId },
-        data: {
-            trackers: {
-                create: {
-                    // id is generated
-                    userId: userId,
-                    habit: habit,
-                    color: color,
-                    name: trackerName,
-                    goal: goal,
-                    current: 0
-                }
-            }
-        },
-    })
-    console.log('CREATETRACKER');
-    console.log(newTracker);
 }
