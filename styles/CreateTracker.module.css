@@ -17,6 +17,7 @@
 }
 
 .container input[type="text"] {
+  background-color: rgba(255, 255, 255, 0.122);
   border: none;
   border-bottom: 4px solid black;
   font-size: 1.2em;
@@ -31,6 +32,11 @@
     rgb(216, 194, 255, 0.6) 50%,
     rgba(255, 255, 255, 0) 70%
   );
+}
+.container select {
+  border: 4px dotted rgb(123, 189, 255);
+  border-radius: 8px;
+  padding: 0.2em;
 }
 
 /* https://stackoverflow.com/questions/4253920/how-do-i-change-the-color-of-radio-buttons */
