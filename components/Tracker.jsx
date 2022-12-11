@@ -42,9 +42,19 @@ const Tracker = ({ tracker }) => {
     //     console.log('time tracker')
     // }
 
+    const colors = {
+        red: '#d99a9aff',
+        orange: '#eeba77ff',
+        yellow: '#eae178ff',
+        green: '#c0d470ff',
+        blue: '#9bd4c3ff',
+        pink: '#dbade4ff',
+        purple: '#aa9dd4ff'
+    }
+
 
     return (
-        <div id={tracker.id} name={tracker.id} className={`${styles.container} ${styles.color}`}>
+        <div id={tracker.id} name={tracker.id} style={{ backgroundColor: colors[tracker.color] }} className={styles.container}>
             <h3>{tracker.name}</h3>
             <button onClick={subtractHabitTracker}>-</button>
             <div>{habitTracker}/{tracker.goal}</div>

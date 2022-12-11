@@ -31,5 +31,13 @@ export default async function createtracker(req, res) {
         },
     })
 
-    res.status(201).json(newTracker)
+    const trackers = await prisma.tracker.findMany({
+        where: {
+            user: { email: session.user.email },
+        }
+    })
+
+    res.status(201).json(trackers)
+
+    // res.status(201).json(newTracker)
 }

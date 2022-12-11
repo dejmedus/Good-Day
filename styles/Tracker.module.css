@@ -17,25 +17,3 @@
 .container button:hover {
   background-color: rgb(221, 226, 227);
 }
-
-.red {
-  background-color: #d99a9aff;
-}
-.orange {
-  background-color: #eeba77ff;
-}
-.yellow {
-  background-color: #eae178ff;
-}
-.green {
-  background-color: #c0d470ff;
-}
-.blue {
-  background-color: #9bd4c3ff;
-}
-.pink {
-  background-color: #dbade4ff;
-}
-.purple {
-  background-color: #aa9dd4ff;
-}

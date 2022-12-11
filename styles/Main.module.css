@@ -10,7 +10,7 @@
 }
 .splitContainer {
   display: flex;
-  gap: 2em;
+  gap: 8em;
 }
 
 @media (prefers-color-scheme: dark) {

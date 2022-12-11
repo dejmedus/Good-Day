@@ -1,27 +1,31 @@
 import Tracker from "./Tracker"
 import { useState, useEffect } from 'react'
+import styles from '../styles/YourTrackers.module.css'
 
-const YourTrackers = () => {
-    const [data, setData] = useState(null)
+const YourTrackers = ({ trackers, setTrackers }) => {
+
+    // const [data, setData] = useState(null)
     const [isLoading, setLoading] = useState(true)
 
     useEffect(() => {
         fetch('/api/db/gettrackers')
             .then((res) => res.json())
             .then((data) => {
-                setData(data)
+                setTrackers(data)
                 setLoading(false)
             })
     }, [])
 
     return (
-        isLoading
-            ? <h1>loading...</h1>
-            : <>
-                <p>{data.map(tracker => {
-                    return <Tracker key={tracker.id} tracker={tracker} />
-                })}</p>
-            </>
+        <div className={styles.container}>
+            {isLoading
+                ? <h1>loading...</h1>
+                : <>
+                    {trackers.map(tracker => {
+                        return <Tracker key={tracker.id} tracker={tracker} />
+                    })}
+                </>}
+        </div>
     )
 }
 

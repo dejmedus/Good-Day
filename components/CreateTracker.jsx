@@ -2,7 +2,7 @@ import styles from '../styles/CreateTracker.module.css'
 import { useState } from 'react'
 import Button from './Button'
 
-export default function CreateTracker({ session }) {
+export default function CreateTracker({ trackers, setTrackers, session }) {
 
     const [formData, setFormData] = useState({
         habit: 'Habit Tracker',
@@ -40,7 +40,6 @@ export default function CreateTracker({ session }) {
             goal: parseInt(formData.goal),
         }
 
-        console.log(data);
         setFormData({})
         setTrackerType('Habit Tracker')
         setRangeValue(0)
@@ -60,7 +59,7 @@ export default function CreateTracker({ session }) {
         try {
             const response = await fetch(endpoint, options)
             const result = await response.json()
-            console.log(result);
+            setTrackers(result)
         }
         catch {
             console.log('ERROR: createTracker post')

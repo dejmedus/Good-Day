@@ -82,8 +82,7 @@
     flex-direction: column;
   }
   .customShapeDivider svg {
-    width: calc(140% + 1.3px);
-    height: 175px;
+    visibility: hidden;
   }
 }
 @media (prefers-color-scheme: dark) {
