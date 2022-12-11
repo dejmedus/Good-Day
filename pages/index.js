@@ -18,7 +18,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1>Habit tracker for Notion!</h1>
+        <h1>Good Day Habit Trackers</h1>
         <Main session={session} status={status} />
       </main>
 
