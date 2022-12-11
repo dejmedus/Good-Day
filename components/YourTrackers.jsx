@@ -1,41 +1,28 @@
 import Tracker from "./Tracker"
+import { useState, useEffect } from 'react'
 
-const YourTrackers = ({ session, status }) => {
-    // console.log(trackers)
+const YourTrackers = () => {
+    const [data, setData] = useState(null)
+    const [isLoading, setLoading] = useState(true)
+
+    useEffect(() => {
+        fetch('/api/db/gettrackers')
+            .then((res) => res.json())
+            .then((data) => {
+                setData(data)
+                setLoading(false)
+            })
+    }, [])
 
     return (
-        status == 'loading'
-            ? <h3>loading...</h3>
-            : <h1>trackers here</h1>
-        // : trackers
-        //     ? <p>map trackers here</p>
-        //     : <p>Create a tracker!</p>
+        isLoading
+            ? <h1>loading...</h1>
+            : <>
+                <p>{data.map(tracker => {
+                    return <Tracker key={tracker.id} tracker={tracker} />
+                })}</p>
+            </>
     )
 }
 
 export default YourTrackers
-
-// export async function getStaticProps() {
-
-//     const email = session.user.email;
-//     console.log(email)
-//     // use unique email to find userID
-//     const user = await prisma.user.findUnique({
-//         where: {
-//             email: email,
-//         },
-//     })
-//     console.log(user.trackers)
-//     const trackers = user.trackers
-
-//     return {
-//         props: { trackers }
-
-//     }
-// }
-
-// : trackers
-//     ? trackers.map(tracker => {
-//         <Tracker tracker={tracker}></Tracker>
-//     })
-//     : <p>Create a tracker!</p>

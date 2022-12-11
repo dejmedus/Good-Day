@@ -12,16 +12,7 @@ export default async function createtracker(req, res) {
     }
 
     const { email, habit, color, trackerName, goal } = req.body
-    // use unique email to find userID
-    // const user = await prisma.user.findUnique({
-    //     where: {
-    //         email: email,
-    //     },
-    // })
-    // const id = user.id;
 
-    // console.log('step 2')
-    // console.log(user, id);
 
     const newTracker = await prisma.user.update({
         where: { email: email },

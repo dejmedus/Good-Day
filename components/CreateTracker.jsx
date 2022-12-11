@@ -75,14 +75,14 @@ export default function CreateTracker({ session }) {
                 </label>
                 <input type='text' name='trackerName' id='trackerName' onChange={onChange} />
             </div>
-            <div className={styles.labelGroup}>
+            {/* <div className={styles.labelGroup}>
                 <label className={styles.switch} htmlFor='habit'>Habit Tracker</label>
                 <input type="radio" name='habit' id='habit' value='Habit Tracker' onChange={onChange} checked={trackerType == 'Habit Tracker'} />
-            </div>
-            <div className={styles.labelGroup}>
+            </div> */}
+            {/* <div className={styles.labelGroup}>
                 <label className={styles.switch} htmlFor='habit'>Time Tracker</label>
                 <input type="radio" name='habit' id='habit' value='Time Tracker' onChange={onChange} />
-            </div>
+            </div> */}
             {trackerType == 'Habit Tracker'
                 ? <div className={styles.labelGroup}>
                     <label htmlFor='goal'>Days per week [{rangeValue}/7]</label>

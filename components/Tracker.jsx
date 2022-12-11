@@ -7,20 +7,21 @@ const Tracker = ({ tracker }) => {
     // Habit tracker logic
     const [habitTracker, setHabitTracker] = useState(tracker.current)
 
-    const addHabitTracker = (e) => {
-        // name is the tracker id
-        const { name } = e.target;
-        console.log('TRACKER');
-        console.log(name)
+    const addHabitTracker = () => {
 
-        setHabitTracker(cur => cur + 1)
+        if (habitTracker < tracker.goal) {
+            setHabitTracker(cur => cur + 1)
+        }
 
+        fetch('/api/db/gettrackers', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: tracker.id, current: habitTracker }),
+        })
     }
-    const subtractHabitTracker = (e) => {
-        // name is the tracker id
-        const { name } = e.target;
-        console.log('TRACKER');
-        console.log(name)
+    const subtractHabitTracker = () => {
 
         if (habitTracker > 0) {
             setHabitTracker(cur => cur - 1)
@@ -36,24 +37,32 @@ const Tracker = ({ tracker }) => {
     }
 
     // Time tracker logic
-    const [timeTracker, setTimeTracker] = useState(tracker.goal)
-    const handleTimeTracker = () => {
-        console.log('time tracker')
-    }
+    // const [timeTracker, setTimeTracker] = useState(tracker.goal)
+    // const handleTimeTracker = () => {
+    //     console.log('time tracker')
+    // }
 
 
     return (
-        tracker.habit == 'Habit Tracker'
-            ? <div id={tracker.id} name={tracker.id} className={`${styles.container} ${styles.color}`}>
-                <h3>{tracker.name}</h3>
-                <button onClick={subtractHabitTracker}>-</button>
-                <div>{habitTracker}/{tracker.goal}</div>
-                <button onClick={addHabitTracker}>+</button>
-            </div>
-            : <div id={tracker.id} name={tracker.id} className={`${styles.container} ${styles.color}`}>
-                <h3>{tracker.name}</h3>
-                <button onClick={handleTimeTracker}>time tracker {timeTracker}</button>
-            </div>
+        <div id={tracker.id} name={tracker.id} className={`${styles.container} ${styles.color}`}>
+            <h3>{tracker.name}</h3>
+            <button onClick={subtractHabitTracker}>-</button>
+            <div>{habitTracker}/{tracker.goal}</div>
+            <button onClick={addHabitTracker}>+</button>
+        </div>
+
+        //Time Tracker
+        // tracker.habit == 'Habit Tracker'
+        //     ? <div id={tracker.id} name={tracker.id} className={`${styles.container} ${styles.color}`}>
+        //         <h3>{tracker.name}</h3>
+        //         <button onClick={subtractHabitTracker}>-</button>
+        //         <div>{habitTracker}/{tracker.goal}</div>
+        //         <button onClick={addHabitTracker}>+</button>
+        //     </div>
+        //     : <div id={tracker.id} name={tracker.id} className={`${styles.container} ${styles.color}`}>
+        //         <h3>{tracker.name}</h3>
+        //         <button onClick={handleTimeTracker}>time tracker {timeTracker}</button>
+        //     </div>
     )
 }
 
