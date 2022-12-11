@@ -126,5 +126,6 @@ async function dbTracker(email, habit, color, trackerName, goal) {
             }
         },
     })
-    console.log(newTracker)
+    console.log('CREATETRACKER');
+    console.log(newTracker);
 }

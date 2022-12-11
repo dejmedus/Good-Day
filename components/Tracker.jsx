@@ -10,20 +10,24 @@ const Tracker = ({ tracker }) => {
     const addHabitTracker = (e) => {
         // name is the tracker id
         const { name } = e.target;
+        console.log('TRACKER');
         console.log(name)
 
         setHabitTracker(cur => cur + 1)
+        console.log('TRACKER');
         console.log(habitTracker)
         updateTracker(name, habitTracker)
     }
     const subtractHabitTracker = (e) => {
         // name is the tracker id
         const { name } = e.target;
+        console.log('TRACKER');
         console.log(name)
 
         if (habitTracker > 0) {
             setHabitTracker(cur => cur - 1)
         }
+        console.log('TRACKER');
         console.log(habitTracker)
         updateTracker(name, habitTracker)
     }
@@ -61,5 +65,6 @@ async function updateTracker(id, current) {
             current: current
         }
     })
-    console.log(updatedTracker)
+    console.log('TRACKER');
+    console.log(updatedTracker);
 }
